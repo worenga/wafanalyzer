@@ -186,7 +186,7 @@ class Waf(object):
             rule = ",".join(rule)
 
         # TODO: will break with more than 25 IDs
-        url  = self.API + "zones/" + zone + "/firewall/rules?ids=" + rule
+        url  = self.API + "zones/" + zone + "/firewall/ruleinfo?ids=" + rule
 
         for r in self.api(url)['result']:
             self._oDesc[r['id']] = r['description']

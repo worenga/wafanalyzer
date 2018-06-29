@@ -1,3 +1,5 @@
+__version__ = '2018.6.1'
+
 import sys
 import json
 import requests
@@ -52,7 +54,8 @@ class Waf(object):
         self.user  = user
         self.key   = key
         self.pages = pages
-        self.auth  = {
+        self.headers  = {
+            'User-Agent'  : 'wafanalyzer-'+__version__, 
             'X-Auth-Key'  : self.key,
             'X-Auth-Email': self.user,
             'Content-Type': 'application/json'
@@ -126,7 +129,7 @@ class Waf(object):
     def api(self, url, params = {}):
         try:
             response = requests.get(url,
-                headers = self.auth,
+                headers = self.headers,
                 params  = params,
                 timeout = self.TIMEOUT
             )
